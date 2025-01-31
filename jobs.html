@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="assets/css/style-freedom.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+</head>
+<body>
+<div class="w3l-headers-9">
+        <header>
+            <?php require 'header.html'?>
+        </header>      
+    </div>
+ 
+  
+  <div class="modal card fade" id="AppointmentModal" style="background-color:rgba(0, 0, 0, 0);">
+    <div class="modal-dialog modal-lg  modal-dialog-centered ">
+      <div class="modal-content">
+        <div class="">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" style="background-color: #f9351b;">x</button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <h4 class="  p-2 text-center font-weight-bold ">Details</h4>
+
+          <div class="card-deck">
+            <div class="card m-2 ">
+              <div class="card-body ">
+                
+                  <div class="form-group displayDetails">
+
+                  </div>
+
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <section class="w3l-text-25-main">
+    <div class="text-25">
+      <div class="wrapper">
+        <h5 class="heading mt-4 pt-4">job vacancies</h5>
+        <h3 class="heading">Available Jobs</h3>
+        <div class="text-25-content">
+          <div class="d-grid showJobs">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- footer-28 block -->
+
+  <section class="w3l-footer-28-main">
+    <div class="footer-28">
+        <div class="wrapper">
+            <div class="d-grid grid-col-4 footer-top-28">
+                <div class="footer-list-28">
+                    <h6 class="footer-title-28">Address Info<span class="line"></span></h6>
+                    <ul>
+                        <li>
+                            <p><span class="fa fa-user"></span> Commercial Specialist Rita Asante </p>
+                        </li>
+                        <li><a href="tel:+233 (0) 30 274 1715"><span class="fa fa-phone"></span> +233 (0) 30 274
+                                1715</a>
+                        </li>
+                        <li><a href="#c" class="mail"><span class="fa fa-envelope-open"></span>
+                                office.accra@trade.gov </a></li>
+                        <li><a href="#c" class="mail"><span class="fa fa-envelope-open"></span>
+                                mail@company.com</a></li>
+                    </ul>
+                </div>
+                <div class="footer-list-28">
+                    <h6 class="footer-title-28">Quick Links<span class="line"></span></h6>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Projects</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-list-28">
+                    <h6 class="footer-title-28">list of Services<span class="line"></span></h6>
+                    <ul class="d-grid footer-column-2">
+                        <li><a href="services-single.html">Home</a></li>
+                        <li><a href="services-single.html">Factories</a></li>
+                        <li><a href="services-single.html">Gallery</a></li>
+                        <li><a href="services-single.html">Advertisement</a></li>
+                        <li><a href="services-single.html">Exhibitions</a></li>
+                        <li><a href="services-single.html">Stakeholders</a></li>
+                        <li><a href="services-single.html">e-coomerce</a></li>
+                        <li><a href="services-single.html">Partners</a></li>
+                    </ul>
+                </div>
+                <div class="footer-list-28">
+                    <h6 class="footer-title-28">Support<span class="line"></span></h6>
+                    <ul>
+                        <li><a href="#link">Documentation</a></li>
+                        <li><a href="#link">Privacy policy</a></li>
+                        <li><a href="#link">Terms of service</a></li>
+                        <li><a href="#link">24/7 support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- //footer-28 block -->
+</section>
+  <!-- //footer-28 block -->
+  <script src="assets/js/jquery-3.5.1.jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script>
+    displayJobs();
+    //display all note of a user
+    function displayJobs() {
+      $.ajax({
+        url: 'admin/assets/php/process.php',
+        method: 'post',
+        data: {
+          action: 'displayJobs'
+        },
+        success: function(response) {
+          $(".showJobs").html(response);;
+        }
+      });
+    }
+
+    $('body').on("click", ".more", function(e) {
+      view = $(this).attr('id');
+      $.ajax({
+        url: 'admin/assets/php/process.php',
+        method: 'post',
+        data: {
+          view: view
+        },
+        success: function(response) {
+          console.log(response)
+          $('.displayDetails').html(response);
+
+        }
+      });
+
+    })
+  </script>
+</body>
+
+</html>
